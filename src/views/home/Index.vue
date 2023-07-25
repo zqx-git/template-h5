@@ -3,8 +3,11 @@
     <h1>首页</h1>
     <div class="box"></div>
     <van-button />
+    {{ userStore.doubleUser }}
+    <HelloWorld />
+    <van-button type="primary" @click="ccc"> num++ </van-button>
     <van-button type="primary" @click="aaa"> 说你好 {{ a }}</van-button>
-    <van-button type="primary" @click="bbb"> 说你好 {{ a }}</van-button>
+    <van-button type="primary" @click="bbb"> 登录 {{ a }}</van-button>
   </main>
   <RouterView />
 </template>
@@ -19,12 +22,18 @@ export default {
 </script>
 
 <script setup>
+import { useUserStore } from '@/store/user'
+const userStore = useUserStore()
 const a = ref('1')
 function aaa() {
-  showToast()
+  console.log(userStore.user)
+  showToast(userStore.user.name)
 }
 function bbb() {
-  showDialog()
+  userStore.setUser()
+}
+function ccc() {
+  userStore.user.num++
 }
 </script>
 
