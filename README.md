@@ -46,12 +46,17 @@
 
 说明：给样式排序
 
-"stylelint": "^15.10.2",
-"stylelint-config-recommended-less": "^1.0.4",
-"stylelint-config-recommended-vue": "^1.5.0",
-"stylelint-config-standard": "^34.0.0",
-"stylelint-less": "^1.0.8",
-"stylelint-order": "^6.0.3",
+### husky lint-staged commitlint
+
+说明：提交代码前校验（eslint+stylelint），只校验暂存区的文件，对 commit 进行规范校验
+
+### pinia pinia-plugin-persist
+
+说明：全局状态管理，持久化存储
+
+### axios
+
+说明：接口请求封装
 
 # 未解决的问题
 
@@ -91,6 +96,12 @@ vite.config.js 中添加 define：{**AAA**: JSON.stringify('fffffs')}，AutoImpo
 
 ### 实现功能：
 
-eslint，stylelint
+eslint，stylelint，husky
 
 stylelint 踩了很多坑，新版本 15 不支持 vue3，需要安装 stylelint-config-recommended-vue 插件，在保存文件自动格式化的时候，发现 vue 文件内的 style 标签包含 lang="less"时，style 内样式不会格式化，因为不会被识别，但只要把 lang="less"去掉就可以，搜了网上博客，stylelint 用的 14 版本的，但他们用的都是 scss，说要安装 scss 什么的，less 反复实验就是不成功。折腾了半天，因为我用的是 15 版本，就以为是新版本和项目内插件的兼容问题，官方文档也看了一遍又一遍，愣是没看出问题。后来想到先 lint 校验一下试试，看看项目的 stylelint 能不能识别到，结果 npm run lint:style 发现是能识别到的，搞了半天是 vscode 没识别到，于是又翻看 vscode 插件 stylelint 的介绍文档，依旧看不出问题，最后发现 stylelint.config 未设置，设置为和项目一致，完美解决。
+
+## 请求模块
+
+### 实现功能
+
+请求拦截，返回拦截，
