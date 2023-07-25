@@ -33,7 +33,10 @@ export default defineConfig(({ mode }) => {
         deleteOriginFile: false // 压缩后是否删除源文件
       }),
       Components({
-        // extensions: ["vue", "md"],
+        // dirs: ['src/**/components', 'components'], // 需要自动引入的目录，默认components
+        extensions: ['vue'], // 引入文件的后缀名
+        // extensions: ['vue', 'md'],
+        // dts: false, // 是否生成components.d.ts文件，用于查看导入了哪些组件，默认true
         resolvers: [VantResolver()]
       }),
       AutoImport({
@@ -42,6 +45,7 @@ export default defineConfig(({ mode }) => {
           enabled: true,
           globalsPropValue: true
         },
+        // dts: false,  // 是否生成auto-imports.d.ts文件，用于查看导入了哪些API
         imports: [
           'vue',
           'vue-router',
